@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logIn">
+
+    <fragment
+        android:id="@+id/logIn"
+        android:name="com.example.sugar.LogIn"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logIn_to_registration"
+            app:destination="@id/registration" />
+        <action
+            android:id="@+id/action_logIn_to_homeScreen"
+            app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_logIn_to_forgotPassword"
+            app:destination="@id/forgotPassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration"
+        android:name="com.example.sugar.registration"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registration_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.example.sugar.homeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_addSugar"
+            app:destination="@id/addSugar" />
+        <action
+            android:id="@+id/action_homeScreen_to_history"
+            app:destination="@id/history" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSugar"
+        android:name="com.example.sugar.addSugar"
+        android:label="fragment_add_sugar"
+        tools:layout="@layout/fragment_add_sugar" >
+        <action
+            android:id="@+id/action_addSugar_to_sugarLow"
+            app:destination="@id/sugarLow" />
+        <action
+            android:id="@+id/action_addSugar_to_sugarHigh"
+            app:destination="@id/sugarHigh" />
+        <action
+            android:id="@+id/action_addSugar_to_sugarOk"
+            app:destination="@id/sugarOk" />
+    </fragment>
+    <fragment
+        android:id="@+id/sugarLow"
+        android:name="com.example.sugar.sugarLow"
+        android:label="fragment_sugar_low"
+        tools:layout="@layout/fragment_sugar_low" >
+        <action
+            android:id="@+id/action_sugarLow_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/sugarHigh"
+        android:name="com.example.sugar.sugarHigh"
+        android:label="fragment_sugar_high"
+        tools:layout="@layout/fragment_sugar_high" >
+        <action
+            android:id="@+id/action_sugarHigh_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/sugarOk"
+        android:name="com.example.sugar.sugarOk"
+        android:label="fragment_sugar_ok"
+        tools:layout="@layout/fragment_sugar_ok" >
+        <action
+            android:id="@+id/action_sugarOk_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/test"
+        android:name="com.example.sugar.test"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" >
+        <action
+            android:id="@+id/action_test_to_logIn"
+            app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/history"
+        android:name="com.example.sugar.History"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/forgotPassword"
+        android:name="com.example.sugar.forgotPassword"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" />
+</navigation>
