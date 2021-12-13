@@ -28,9 +28,8 @@ class addSugar : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_sugar, container, false)
         getView()?.findViewById<EditText>(R.id.addsugarEdittext)
-        view.ok_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk) }
 
-        /*getView()?.findViewById<Button>(R.id.add_button)?.setOnClickListener {
+        getView()?.findViewById<Button>(R.id.add_button)?.setOnClickListener {
             var string = addsugarEdittext.text.toString()
             if(string.toFloat()>5)
             {
@@ -39,7 +38,7 @@ class addSugar : Fragment() {
             else{
                 view.ok_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh) }
             }
-        }*/
+        }
 
 
 
