@@ -37,13 +37,13 @@ class addSugar : Fragment() {
         return view
     }
     private fun addSugar(view: View) {
-        var stringi = view.addsugarEdittext.text.toString();
+        var stringi = view.addsugarEdittext.text.toString().trim();
         if(stringi.toFloat()>5)
         {
-            view.add_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk) }
+              Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
         }
         else{
-            view.add_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh) }
+            Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
         }
         return;
     }
