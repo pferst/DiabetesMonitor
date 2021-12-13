@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EdgeEffect
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import kotlinx.android.synthetic.main.fragment_add_sugar.*
@@ -27,23 +28,35 @@ class addSugar : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_sugar, container, false)
-        getView()?.findViewById<EditText>(R.id.addsugarEdittext)
+        val shit =getView()?.findViewById<EditText>(R.id.addsugarEdittext)
 
-        getView()?.findViewById<Button>(R.id.add_button)?.setOnClickListener {
+        getView()?.findViewById<Button>(R.id.add_button)?.setOnClickListener() {
+            val inputValue:String = addsugarEdittext.text.toString()
+
+                textView2.setText(inputValue).toString()
+
+        }
+
+
+        //view.add_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk) }
+
+
+        /*getView()?.findViewById<Button>(R.id.add_button)?.setOnClickListener {
             var string = addsugarEdittext.text.toString()
             if(string.toFloat()>5)
             {
-                view.ok_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk) }
+                view.add_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk) }
             }
             else{
-                view.ok_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh) }
+                view.add_button.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh) }
             }
-        }
+        }*/
 
 
 
         return view
         }
+
 
 
 
