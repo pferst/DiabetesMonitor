@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="300dp"
         android:text="Poziom cukru w normie"
         android:textSize="30dp"

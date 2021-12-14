@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_addSugar_to_sugarOk"
             app:destination="@id/sugarOk" />
+        <action
+            android:id="@+id/action_addSugar_to_bladWpisywania"
+            app:destination="@id/bladWpisywania" />
     </fragment>
     <fragment
         android:id="@+id/sugarLow"
@@ -84,15 +87,6 @@
             app:destination="@id/homeScreen" />
     </fragment>
     <fragment
-        android:id="@+id/test"
-        android:name="com.example.sugar.test"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" >
-        <action
-            android:id="@+id/action_test_to_logIn"
-            app:destination="@id/logIn" />
-    </fragment>
-    <fragment
         android:id="@+id/history"
         android:name="com.example.sugar.History"
         android:label="fragment_history"
@@ -102,4 +96,13 @@
         android:name="com.example.sugar.forgotPassword"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" />
+    <fragment
+        android:id="@+id/bladWpisywania"
+        android:name="com.example.sugar.BladWpisywania"
+        android:label="fragment_blad_wpisywania"
+        tools:layout="@layout/fragment_blad_wpisywania" >
+        <action
+            android:id="@+id/action_bladWpisywania_to_addSugar"
+            app:destination="@id/addSugar" />
+    </fragment>
 </navigation>

@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_add_sugar.*
 import kotlinx.android.synthetic.main.fragment_add_sugar.view.*
 import kotlinx.android.synthetic.main.fragment_home_screen.view.*
 import kotlinx.android.synthetic.main.fragment_sugar_ok.view.*
+import java.lang.NumberFormatException
 import java.util.*
 
 
@@ -37,13 +38,22 @@ class addSugar : Fragment() {
         return view
     }
     private fun addSugar(view: View) {
-        var stringi = view.addsugarEdittext.text.toString().trim();
-        if(stringi.toFloat()>5)
+        try
         {
-              Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
-        }
-        else{
-            Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
+
+            var stringi = view.addsugarEdittext.text.toString().trim();
+            var stringi2 = stringi.toFloat()
+            if (stringi2 >= 70 && stringi2 <= 99) {
+                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
+            }
+            if (stringi2> 99) {
+                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
+            }
+            if (stringi2 < 70) {
+                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarLow)
+            }
+        } catch (error: NumberFormatException){
+            Navigation.findNavController(view).navigate(R.id.action_addSugar_to_bladWpisywania)
         }
         return;
     }
