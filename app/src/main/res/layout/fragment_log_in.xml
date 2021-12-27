@@ -56,34 +56,29 @@
         app:layout_constraintVertical_bias="0.0" /><![CDATA[
    />/>
 
+
+
     ]]>
 
     <EditText
         android:id="@+id/passwordLogIn"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
+        android:hint="Hasło"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="9dp"
         android:drawableStart="@drawable/ic_password"
-        android:drawablePadding="10dp"
-        android:hint="Password"
+        android:ems="10"
+        android:inputType="textPassword"
         android:minHeight="48dp"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/forgotpassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" /><![CDATA[
-
-
-
-    />/>
-
-
-
-    ]]>
+        app:layout_constraintTop_toBottomOf="@+id/emailLogIn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/forgotpassword"
@@ -133,7 +128,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />/>/>
+        app:layout_constraintVertical_bias="0.019" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,13 @@
 package com.example.sugar
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -22,16 +24,15 @@ class LogIn : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_log_in, container, false)
 
-        if(view.buttonLogOK!=null)
-        {
-            view.buttonLogOK.setOnClickListener {
-                setupLoginClick(view)
-            }
-        }
+        //wywołanie logowania
+        view.buttonLogOK.setOnClickListener {
+                setupLoginClick(view) }
+
         view.goToRegistration.setOnClickListener { Navigation.findNavController(view).navigate((R.id.action_logIn_to_registration)) }
         view.forgotpassword.setOnClickListener { Navigation.findNavController(view).navigate((R.id.action_logIn_to_forgotPassword)) }
         return view
     }
+
 
     private fun setupLoginClick(view: View) {
         //logowanie
@@ -39,14 +40,22 @@ class LogIn : Fragment() {
             val email: String = emailLogIn.text?.trim().toString()
             val password: String = passwordLogIn.text?.trim().toString()
             fbAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener {
-                    Navigation.findNavController(view).navigate((R.id.action_logIn_to_homeScreen))
-                }
-        }.onFailure {
-             Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
+                .addOnSuccessListener { authRes ->
+                    if (authRes.user != null) {
 
+                        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+                            flags =
+                                (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        }
+
+                        startActivity(intent)
+                    }
+                }
+                .addOnFailureListener {
+                    Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
+                }
+        }.onFailure { Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError)) }
         }
 
     }
 
-}
