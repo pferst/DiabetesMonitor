@@ -16,7 +16,6 @@
         android:layout_marginBottom="59dp"
         android:text="Podaj liczbę!"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/add_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />

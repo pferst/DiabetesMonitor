@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "756841670018",
+    "project_id": "sugardaddy-fb557",
+    "storage_bucket": "sugardaddy-fb557.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756841670018:android:c1810c35495cbae61adb9b",
+        "android_client_info": {
+          "package_name": "com.example.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756841670018-9jnpgbnha1ltdcq8kjkf4r0q8rf7129t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArthPjCqyh7ASn3zvKbtfapVypRdiqXes"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756841670018-9jnpgbnha1ltdcq8kjkf4r0q8rf7129t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

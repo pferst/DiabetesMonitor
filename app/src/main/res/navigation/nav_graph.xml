@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_logIn_to_forgotPassword"
             app:destination="@id/forgotPassword" />
+        <action
+            android:id="@+id/action_logIn_to_logInError"
+            app:destination="@id/logInError" />
     </fragment>
     <fragment
         android:id="@+id/registration"
@@ -104,5 +107,14 @@
         <action
             android:id="@+id/action_bladWpisywania_to_addSugar"
             app:destination="@id/addSugar" />
+    </fragment>
+    <fragment
+        android:id="@+id/logInError"
+        android:name="com.example.sugar.LogInError"
+        android:label="fragment_log_in_error"
+        tools:layout="@layout/fragment_log_in_error" >
+        <action
+            android:id="@+id/action_logInError_to_logIn"
+            app:destination="@id/logIn" />
     </fragment>
 </navigation>
