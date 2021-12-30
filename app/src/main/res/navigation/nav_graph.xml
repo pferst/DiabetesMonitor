@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_registration_to_homeScreen"
             app:destination="@id/homeScreen" />
+        <action
+            android:id="@+id/action_registration_to_registration_error"
+            app:destination="@id/registration_error" />
+        <action
+            android:id="@+id/action_registration_to_registration_error_second"
+            app:destination="@id/registration_error_second" />
     </fragment>
     <fragment
         android:id="@+id/homeScreen"
@@ -116,5 +122,23 @@
         <action
             android:id="@+id/action_logInError_to_logIn"
             app:destination="@id/logIn" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration_error"
+        android:name="com.example.sugar.registration_error"
+        android:label="fragment_registration_error"
+        tools:layout="@layout/fragment_registration_error" >
+        <action
+            android:id="@+id/action_registration_error_to_registration"
+            app:destination="@id/registration" />
+    </fragment>
+    <fragment
+        android:id="@+id/registration_error_second"
+        android:name="com.example.sugar.registration_error_second"
+        android:label="fragment_registration_error_second"
+        tools:layout="@layout/fragment_registration_error_second" >
+        <action
+            android:id="@+id/action_registration_error_second_to_registration"
+            app:destination="@id/registration" />
     </fragment>
 </navigation>

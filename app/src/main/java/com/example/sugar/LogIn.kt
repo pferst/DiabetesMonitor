@@ -52,7 +52,7 @@ class LogIn : Fragment() {
                     }
                 }
                 .addOnFailureListener {
-                    Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
+                   // Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
                 }
         }.onFailure { Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError)) }
         }

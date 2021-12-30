@@ -10,7 +10,9 @@
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_home_screen.xml" value="0.1" />
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_log_in.xml" value="0.1" />
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_log_in_error.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_registration.xml" value="0.176" />
+        <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_registration.xml" value="0.1" />
+        <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_registration_error.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_registration_error_second.xml" value="0.16" />
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_sugar_high.xml" value="0.1" />
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_sugar_low.xml" value="0.1" />
         <entry key="..\:/Users/ghala/AndroidStudioProjects/Sugar/app/src/main/res/layout/fragment_sugar_ok.xml" value="0.1" />
