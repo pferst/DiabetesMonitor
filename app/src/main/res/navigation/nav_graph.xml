@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/addSugar"
-        android:name="com.example.sugar.addSugar"
+        android:name="com.example.sugar.AddSugar"
         android:label="fragment_add_sugar"
         tools:layout="@layout/fragment_add_sugar" >
         <action
