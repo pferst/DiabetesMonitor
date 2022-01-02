@@ -17,9 +17,11 @@ import kotlinx.android.synthetic.main.fragment_home_screen.view.*
 import kotlinx.android.synthetic.main.fragment_sugar_ok.view.*
 import java.lang.NumberFormatException
 import java.util.*
+import android.app.AlertDialog
+import android.content.DialogInterface
 
 
-class addSugar : Fragment() {
+class AddSugar : Fragment() {
 
 
 
@@ -40,10 +42,9 @@ class addSugar : Fragment() {
     private fun addSugar(view: View) {
         try
         {
-
-            var stringi = view.addsugarEdittext.text.toString().trim();
-            var stringi2 = stringi.toFloat()
-            if (stringi2 >= 70 && stringi2 <= 99) {
+            val stringi = view.addsugarEdittext.text.toString().trim()
+            val stringi2 = stringi.toFloat()
+            if (stringi2 in 70.0..99.0) {
                 Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
             }
             if (stringi2> 99) {
@@ -54,8 +55,26 @@ class addSugar : Fragment() {
             }
         } catch (error: NumberFormatException){
             Navigation.findNavController(view).navigate(R.id.action_addSugar_to_bladWpisywania)
+            // build alert dialog
+//            val dialogBuilder = AlertDialog.Builder(context)
+//
+//            // set message of alert dialog
+//            dialogBuilder.setMessage("Podaj liczbę!")
+//                // if the dialog is cancelable
+//                .setCancelable(false)
+//                // positive button text and action
+//                .setPositiveButton("OK", DialogInterface.OnClickListener {
+//                        dialog, id -> null
+//                })
+//
+//            // create dialog box
+//            val alert = dialogBuilder.create()
+//            // set title for alert dialog box
+//            alert.setTitle("Błędne dane")
+//            // show alert dialog
+//            alert.show()
         }
-        return;
+        return
     }
 
 
