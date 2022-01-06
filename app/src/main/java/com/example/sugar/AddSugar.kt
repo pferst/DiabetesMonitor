@@ -19,11 +19,16 @@ import java.lang.NumberFormatException
 import java.util.*
 import android.app.AlertDialog
 import android.content.DialogInterface
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.database.ktx.database
+import java.text.SimpleDateFormat
 
 
 class AddSugar : Fragment() {
 
-
+    private var database: DatabaseReference = Firebase.database.reference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,19 +45,24 @@ class AddSugar : Fragment() {
         return view
     }
     private fun addSugar(view: View) {
+        val propName = "measurement" // property name
+        val currDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
         try
         {
             val stringi = view.addsugarEdittext.text.toString().trim()
             val stringi2 = stringi.toFloat()
-            if (stringi2 in 70.0..99.0) {
-                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
+            when {
+                stringi2 in 70.0..99.0 -> {
+                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
+                }
+                stringi2 > 99 -> {
+                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
+                }
+                stringi2 < 70 -> {
+                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarLow)
+                }
             }
-            if (stringi2> 99) {
-                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
-            }
-            if (stringi2 < 70) {
-                Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarLow)
-            }
+            database.child("userId").child(propName).child(currDate).setValue(stringi2)
         } catch (error: NumberFormatException){
             Navigation.findNavController(view).navigate(R.id.action_addSugar_to_bladWpisywania)
             // build alert dialog
