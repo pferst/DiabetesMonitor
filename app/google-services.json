@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "846631299129",
+    "firebase_url": "https://sugar-daddy-263d4-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "sugar-daddy-263d4",
     "storage_bucket": "sugar-daddy-263d4.appspot.com"
   },
@@ -14,34 +15,13 @@
       },
       "oauth_client": [
         {
-          "client_id": "846631299129-e7tk6et6cm9pog7hjrhcr8iu090mbkit.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBy1suL8fXtkuP6wk-b0X7ELXJEQLaf-7s"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "846631299129-e7tk6et6cm9pog7hjrhcr8iu090mbkit.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:846631299129:android:c76c35f46752d94c5f85e8",
-        "android_client_info": {
-          "package_name": "com.example.test"
-        }
-      },
-      "oauth_client": [
+          "client_id": "846631299129-4en0k2f2i58c3bo17d6holusqrnumpcg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sugar",
+            "certificate_hash": "fb05230b20c78b82d8ce36c5093235f3f8ef3cfc"
+          }
+        },
         {
           "client_id": "846631299129-e7tk6et6cm9pog7hjrhcr8iu090mbkit.apps.googleusercontent.com",
           "client_type": 3

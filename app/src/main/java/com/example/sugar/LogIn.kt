@@ -2,7 +2,6 @@ package com.example.sugar
 
 import android.app.ActionBar
 import android.app.Dialog
-import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -45,25 +44,26 @@ class LogIn : Fragment() {
 
     private fun setupLoginClick(view: View) {
         //logowanie
-        runCatching  {
-            val email: String = emailLogIn.text?.trim().toString()
-            val password: String = passwordLogIn.text?.trim().toString()
-            fbAuth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener { authRes ->
-                    if (authRes.user != null) {
+//        runCatching  {
+//            val email: String = emailLogIn.text?.trim().toString()
+//            val password: String = passwordLogIn.text?.trim().toString()
+//            fbAuth.signInWithEmailAndPassword(email, password)
+//                .addOnSuccessListener { authRes ->
+//                    if (authRes.user != null) {
+//
+//                        val intent = Intent(requireContext(), MainActivity::class.java).apply {
+//                            flags =
+//                                (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//                        }
+//
+//                        startActivity(intent)
+//                    }
+//                }
+//                .addOnFailureListener {
+//                   // Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
+//                }
+//        }.onFailure { Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError)) }
 
-                        val intent = Intent(requireContext(), MainActivity::class.java).apply {
-                            flags =
-                                (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        }
-
-                        startActivity(intent)
-                    }
-                }
-                .addOnFailureListener {
-                   // Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError))
-                }
-        }.onFailure { Navigation.findNavController(view).navigate((R.id.action_logIn_to_logInError)) }
     }
 
 }
