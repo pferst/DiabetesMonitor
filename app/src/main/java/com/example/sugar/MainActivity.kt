@@ -3,6 +3,8 @@ package com.example.sugar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -18,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        isCurrentUser()
+//        isCurrentUser()
     }
 
     private fun isCurrentUser() {
@@ -26,7 +28,13 @@ class MainActivity : AppCompatActivity() {
           val intent = Intent(applicationContext,MainActivity::class.java).apply {
               flags = (Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
           }
-          startActivity(intent)
+          if(fbAuth.currentUser!=null)
+          {
+              // Zasadniczo niezbyt potrzebne bo i tak działa, ale po restarcie się trzeba znowu logować i to tego nie zmieni
+          }
+//          Navigation.findNavController(view)
+//              .navigate(R.id.action_logIn_to_homeScreen)
+//          startActivity(intent)
       }
     }
 }

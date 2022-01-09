@@ -37,8 +37,12 @@ class registration : Fragment() {
         val view =inflater.inflate(R.layout.fragment_registration, container, false)
         //view.confirmRegistration.setOnClickListener { Navigation.findNavController(view).navigate(R.id.action_registration_to_homeScreen) }
 
+
         view.confirmRegistration.setOnClickListener {
             setupRegistration(view) }
+        view.goToLogin.setOnClickListener {
+            Navigation.findNavController(view).navigate((R.id.action_registration_to_logIn))
+        }
 
         return view
     }
@@ -104,7 +108,7 @@ class registration : Fragment() {
                                     Log.d("Incorrect Passwords", "Some shit 7")
                                     val fbUser: FirebaseUser = task.result!!.user!!
 //
-                                    val intent = Intent(requireContext(), MainActivity::class.java)
+                                    val intent = Intent(requireContext(), homeScreen::class.java)
                                     intent.flags =
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", fbUser.uid)

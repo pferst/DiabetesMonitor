@@ -44,6 +44,7 @@ class AddSugar : Fragment() {
         }
         return view
     }
+
     private fun addSugar(view: View) {
         val propName = "measurement" // property name
         val currDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())

@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_registration_to_registration_error_second"
             app:destination="@id/registration_error_second" />
+        <action
+            android:id="@+id/action_registration_to_logIn"
+            app:destination="@id/logIn" />
     </fragment>
     <fragment
         android:id="@+id/homeScreen"
@@ -67,6 +70,9 @@
         <action
             android:id="@+id/action_addSugar_to_bladWpisywania"
             app:destination="@id/bladWpisywania" />
+        <action
+            android:id="@+id/action_addSugar_to_homeScreen"
+            app:destination="@id/homeScreen" />
     </fragment>
     <fragment
         android:id="@+id/sugarLow"
