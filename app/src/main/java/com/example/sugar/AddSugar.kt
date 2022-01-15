@@ -19,16 +19,21 @@ import java.lang.NumberFormatException
 import java.util.*
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.database.ktx.database
 import java.text.SimpleDateFormat
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
 
 
 class AddSugar : Fragment() {
 
-    private var database: DatabaseReference = Firebase.database.reference
+    val fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,43 +57,35 @@ class AddSugar : Fragment() {
         {
             val stringi = view.addsugarEdittext.text.toString().trim()
             val stringi2 = stringi.toFloat()
-            when {
-                stringi2 in 70.0..99.0 -> {
-                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
-                }
-                stringi2 > 99 -> {
-                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
-                }
-                stringi2 < 70 -> {
-                    Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarLow)
-                }
-            }
-            database.child("userId").child(propName).child(currDate).setValue(stringi2)
+            saveData(currDate,stringi2, view)
+            //database.child("userId").child(propName).child(currDate).setValue(stringi2)
         } catch (error: NumberFormatException){
             Navigation.findNavController(view).navigate(R.id.action_addSugar_to_bladWpisywania)
-            // build alert dialog
-//            val dialogBuilder = AlertDialog.Builder(context)
-//
-//            // set message of alert dialog
-//            dialogBuilder.setMessage("Podaj liczbę!")
-//                // if the dialog is cancelable
-//                .setCancelable(false)
-//                // positive button text and action
-//                .setPositiveButton("OK", DialogInterface.OnClickListener {
-//                        dialog, id -> null
-//                })
-//
-//            // create dialog box
-//            val alert = dialogBuilder.create()
-//            // set title for alert dialog box
-//            alert.setTitle("Błędne dane")
-//            // show alert dialog
-//            alert.show()
         }
         return
     }
 
-
+    private fun saveData(currDate: String, sugarLvl: Float, view: View){
+        val currentDate = currDate.replace('/','-')
+        val customObj = hashMapOf(
+            currentDate to sugarLvl
+        )
+        val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users/${fbAuth.currentUser!!.uid}/Measure")
+        database.child(currentDate).setValue(sugarLvl)
+            .addOnSuccessListener {
+                when {
+                    sugarLvl in 70.0..99.0 -> {
+                        Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarOk)
+                    }
+                    sugarLvl > 99 -> {
+                        Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarHigh)
+                    }
+                    sugarLvl < 70 -> {
+                        Navigation.findNavController(view).navigate(R.id.action_addSugar_to_sugarLow)
+                    }
+                }
+            }
+    }
 
 
 }

@@ -26,6 +26,9 @@ class History : Fragment() {
     private var param2: String? = null
     private var database: DatabaseReference = Firebase.database.reference
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

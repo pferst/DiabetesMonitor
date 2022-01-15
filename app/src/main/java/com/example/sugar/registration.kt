@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 //
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_log_in.*
 import kotlinx.android.synthetic.main.fragment_log_in.view.*
@@ -113,6 +115,8 @@ class registration : Fragment() {
                                         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     intent.putExtra("user_id", fbUser.uid)
                                     intent.putExtra("email_id", email)
+                                    val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                                    database.child(fbAuth.currentUser!!.uid).setValue(hashMapOf("email" to email))
 //                                    startActivity(intent)
                                     Navigation.findNavController(view).navigate(R.id.action_registration_to_homeScreen)
 //                                    finish()
