@@ -95,16 +95,11 @@
             android:minHeight="48dp"
             app:srcCompat="@drawable/ic_baseline_date_range_24"
             tools:ignore="SpeakableTextPresentCheck" />
-        <ScrollView
-            android:id="@+id/dataListScroll"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dataList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content" />
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
 
     </LinearLayout>
 

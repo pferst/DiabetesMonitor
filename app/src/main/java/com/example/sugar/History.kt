@@ -6,24 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ScrollView
 import android.widget.Switch
-import android.widget.ToggleButton
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_add_sugar.view.*
 //import android.databinding.BaseObservable;
 //import android.databinding.Bindable;
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.livedata.observeAsState
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
-import kotlinx.android.synthetic.main.fragment_history.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_history.view.*
+import com.google.firebase.database.DatabaseError
+
+import com.google.firebase.database.DataSnapshot
+
+import com.google.firebase.database.ValueEventListener
+import kotlin.math.log
 
 
 /**
@@ -39,37 +38,49 @@ class History : Fragment() {
             .setTitleText("Select dates")
             .build()
 //    dateRangePicker.show()
-//    val isChart: String? by liveData.observeAsState()
-    val gone: String = "gone";
-    val visible: String = "visible";
-
+    var sugarLvlsList : MutableList<ArrayElement> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        database.child("Users/${fbAuth.currentUser!!.uid}/Measure").get().addOnSuccessListener {
-            Log.i("firebase", "Got value ${it.value}")
-        }.addOnFailureListener {
-            Log.e("firebase", "Error getting data", it)
-        }
+
     }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val isChart: Switch = view.switch1
+        val dataList: RecyclerView = view.dataList
         isChart.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // The toggle is enabled
-                val dataList: ScrollView = view.dataListScroll
                 dataList.visibility = View.GONE
             } else {
-                val dataList: ScrollView = view.dataListScroll
                 dataList.visibility = View.VISIBLE
                 // The toggle is disabled
             }
         }
+
+        database.child("Users/${fbAuth.currentUser!!.uid}/Measure")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    if (dataSnapshot.hasChildren()) {
+                        for (child in dataSnapshot.children) {
+                            val newKey = child.key!!.replace(' ', '\n')
+                            sugarLvlsList.add(
+                                ArrayElement(
+                                    date = child.key!!,
+                                    sugarLvl = child.value!!.toString().toInt()
+                                )
+                            )
+                        }
+                    }
+                }
+                override fun onCancelled(databaseError: DatabaseError) {}
+            })
+        val list = sugarLvlsList.asReversed()
+        val adapter = itemAdapter(list)
+        dataList.layoutManager = LinearLayoutManager(requireContext())
+        dataList.adapter = adapter
         // Inflate the layout for this fragment
         return view
     }
