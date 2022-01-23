@@ -6,15 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
+import android.widget.Switch
+import android.widget.ToggleButton
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_add_sugar.view.*
+//import android.databinding.BaseObservable;
+//import android.databinding.Bindable;
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.android.synthetic.main.fragment_history.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -22,34 +32,46 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class History : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
     private var database: DatabaseReference = Firebase.database.reference
-
-
-
+    val fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    val dateRangePicker =
+        MaterialDatePicker.Builder.dateRangePicker()
+            .setTitleText("Select dates")
+            .build()
+//    dateRangePicker.show()
+//    val isChart: String? by liveData.observeAsState()
+    val gone: String = "gone";
+    val visible: String = "visible";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-        database.child("userId").child("measurement").get().addOnSuccessListener {
+        database.child("Users/${fbAuth.currentUser!!.uid}/Measure").get().addOnSuccessListener {
             Log.i("firebase", "Got value ${it.value}")
-        }.addOnFailureListener{
+        }.addOnFailureListener {
             Log.e("firebase", "Error getting data", it)
         }
-
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_history, container, false)
+        val isChart: Switch = view.switch1
+        isChart.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                // The toggle is enabled
+                val dataList: ScrollView = view.dataListScroll
+                dataList.visibility = View.GONE
+            } else {
+                val dataList: ScrollView = view.dataListScroll
+                dataList.visibility = View.VISIBLE
+                // The toggle is disabled
+            }
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        return view
     }
 
     companion object {
@@ -66,8 +88,6 @@ class History : Fragment() {
         fun newInstance(param1: String, param2: String) =
             History().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }
