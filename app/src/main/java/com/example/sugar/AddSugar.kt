@@ -71,7 +71,7 @@ class AddSugar : Fragment() {
             currentDate to sugarLvl
         )
         val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users/${fbAuth.currentUser!!.uid}/Measure")
-        database.child(currentDate).setValue(sugarLvl)
+        database.child(currentDate).child("sugarLevel").setValue(sugarLvl)
             .addOnSuccessListener {
                 when {
                     sugarLvl in 70.0..99.0 -> {
@@ -85,6 +85,8 @@ class AddSugar : Fragment() {
                     }
                 }
             }
+        database.child(currentDate).child("workout").setValue(view.isWorkout.isChecked)
+        database.child(currentDate).child("cheatDay").setValue(view.isCookies.isChecked)
     }
 
 

@@ -19,49 +19,60 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="121dp">
 
             <TextView
                 android:id="@+id/sugarLvl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:text="TextView"
+                android:textColor="@color/black"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-                app:layout_constraintHorizontal_bias="0.079"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.381" />
 
             <TextView
                 android:id="@+id/dateView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="71dp"
+                android:layout_height="42dp"
                 android:text="TextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toEndOf="@+id/sugarLvl"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.482" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sugarLvl"
+                app:layout_constraintVertical_bias="0.6" />
 
-            <ImageButton
-                android:id="@+id/btnEdit"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
+                android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/btnDelete"
-                app:layout_constraintHorizontal_bias="0.95"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_baseline_edit_24"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:layout_constraintStart_toEndOf="@+id/sugarLvl"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/cheat"
+                    android:layout_width="47dp"
+                    android:layout_height="46dp"
+                    app:srcCompat="@drawable/ic_cookie_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/sport"
+                    android:layout_width="46dp"
+                    android:layout_height="45dp"
+                    app:srcCompat="@drawable/ic_sports_gymnastics_black_24dp" />
+            </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
                 android:minHeight="48dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
