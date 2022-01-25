@@ -52,7 +52,7 @@ class AddSugar : Fragment() {
 
     private fun addSugar(view: View) {
         val propName = "measurement" // property name
-        val currDate = SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date())
+        val currDate = SimpleDateFormat("dd/M/yyyy HH:mm:ss").format(Date())
         try
         {
             val stringi = view.addsugarEdittext.text.toString().trim()
@@ -67,8 +67,11 @@ class AddSugar : Fragment() {
 
     private fun saveData(currDate: String, sugarLvl: Float, view: View){
         val currentDate = currDate.replace('/','-')
+        val customObj = hashMapOf(
+            currentDate to sugarLvl
+        )
         val database: DatabaseReference = FirebaseDatabase.getInstance().getReference("Users/${fbAuth.currentUser!!.uid}/Measure")
-        database.child(currentDate).setValue(sugarLvl)
+        database.child(currentDate).child("sugarLevel").setValue(sugarLvl)
             .addOnSuccessListener {
                 when {
                     sugarLvl in 70.0..99.0 -> {
@@ -82,6 +85,8 @@ class AddSugar : Fragment() {
                     }
                 }
             }
+        database.child(currentDate).child("workout").setValue(view.isWorkout.isChecked)
+        database.child(currentDate).child("cheatDay").setValue(view.isCookies.isChecked)
     }
 
 

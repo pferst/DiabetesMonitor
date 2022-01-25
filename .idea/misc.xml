@@ -21,13 +21,16 @@
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/drawable/button_background.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/drawable/ic_baseline_date_range_24.xml" value="0.15648148148148147" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/drawable/ic_launcher_background.xml" value="0.21614583333333334" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/drawable/ic_sports_gymnastics_black_24dp.xml" value="0.2171875" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/activity_main.xml" value="0.19270833333333334" />
-        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_add_sugar.xml" value="0.20260416666666667" />
-        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_history.xml" value="0.41830065359477125" />
-        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_log_in.xml" value="0.1" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_add_sugar.xml" value="0.5" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_blad_wpisywania.xml" value="0.184375" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_history.xml" value="0.33" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_log_in.xml" value="0.33" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_log_in_error.xml" value="0.2" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_registration.xml" value="0.33" />
         <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/fragment_test.xml" value="0.19270833333333334" />
+        <entry key="..\:/Users/peter/Polsl projects/sem5/TOwAM/sugardaddy/app/src/main/res/layout/item_hisotry_list.xml" value="0.5" />
       </map>
     </option>
   </component>
