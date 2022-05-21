@@ -17,6 +17,10 @@ import com.google.firebase.ktx.Firebase
 //import android.databinding.Bindable;
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import kotlinx.android.synthetic.main.fragment_history.view.*
 import com.google.firebase.database.DatabaseError
 
@@ -26,6 +30,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_add_sugar.*
 import kotlinx.android.synthetic.main.fragment_add_sugar.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.math.log
 
 
@@ -37,6 +42,8 @@ import kotlin.math.log
 class History : Fragment() {
     val fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var sugarLvlsList : MutableList<ArrayElement> = mutableListOf()
+    val xvalue = ArrayList<String>()
+    val lineentry = ArrayList<Entry>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +52,17 @@ class History : Fragment() {
         val view = inflater.inflate(R.layout.fragment_history, container, false)
         val isChart: Switch = view.switch1
         val dataList: RecyclerView = view.dataList
+        val chart: LineChart = view.lineChart
+        val srednia = view.meanSugar
         isChart.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 // The toggle is enabled
                 dataList.visibility = View.GONE
+                chart.visibility = View.VISIBLE
             } else {
-                dataList.visibility = View.VISIBLE
                 // The toggle is disabled
+                dataList.visibility = View.VISIBLE
+                chart.visibility = View.GONE
             }
         }
         var suma = 0
@@ -60,13 +71,13 @@ class History : Fragment() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     if (dataSnapshot.hasChildren()) {
-
+                        var i = 0
                         for (child in dataSnapshot.children) {
                             val newKey = child.key!!.replace(' ', '\n')
                             var cookie : Boolean = false
                             var sgrLvl : Int = 0
                             var workout : Boolean = false
-                            for( itemik in child.children)
+                            for(itemik in child.children)
                             {
                                 if(itemik.key.toString()=="cheatDay")
                                 {
@@ -84,23 +95,30 @@ class History : Fragment() {
                             }
                             sugarLvlsList.add(
                                 ArrayElement(
-                                    date = child.key!!,
+                                    date = newKey,
                                     sugarLvl = sgrLvl,
                                     cookie = cookie,
                                     workout = workout
                                 )
                             )
+                            xvalue.add(child.key!!)
+                            lineentry.add(Entry(sgrLvl.toFloat(), i))
+                            i++
                         }
+                        val linedataset = LineDataSet(lineentry, "Poziom cukru [mg/dl]")
+                        val data = LineData(xvalue, linedataset)
+                        chart.data = data
+                        var liczbaWpisow = 1
+                        if(i>0) {
+                            liczbaWpisow = i
+                        }
+                        srednia.text = (suma/liczbaWpisow).toString()
                     }
                 }
                 override fun onCancelled(databaseError: DatabaseError) {}
             })
         var list = sugarLvlsList.asReversed()
         var adapter = itemAdapter(list)
-        var liczbaWpisow = 1
-        if(list.size>0) {
-            liczbaWpisow = list.size
-        }
         dataList.layoutManager = LinearLayoutManager(requireContext())
         dataList.adapter = adapter
         val c: Calendar = Calendar.getInstance()
@@ -170,10 +188,13 @@ class History : Fragment() {
                 dataList.adapter = adapter
             }
         }
-        val srednia = view.meanSugar
-        srednia.text = "63.64"//(suma/liczbaWpisow).toString()
         // Inflate the layout for this fragment
         return view
+    }
+    fun dataChanged(){
+
+    }
+    fun setLineChartData(x: String, y: Number) {
     }
     fun refreshData(removeIndex: Int){
         sugarLvlsList.removeAt(removeIndex)
